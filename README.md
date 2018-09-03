@@ -1,21 +1,35 @@
-# vue-px2rem-config
+# vue-cli 生成的项目配置 px2rem
 
-> A Vue.js project
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
+## 动态计算html的fontsize
+```
+html {
+  font-size: calc(100vw / 3.75);
+}
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## `.postcssrc.js`添加`postcss-pxtorem`配置
+
+### 安装
+```
+npm i postcss-pxtorem -D
+```
+### 配置
+```
+module.exports = {
+  "plugins": {
+    "postcss-import": {},
+    "postcss-url": {},
+    // to edit target browsers: use "browserslist" field in package.json
+    "autoprefixer": {},
+    "postcss-pxtorem": {
+      rootValue: 100, //默认根目录字体大小(px)
+      unitPrecision: 5, //保留小数位
+      propList: ['*'],
+      // selectorBlackList: [''], //过滤的类名
+      replace: true, //默认直接替换属性
+      mediaQuery: false,
+      minPixelValue: 6, //所有小于设置的样式都不被转换
+    }
+  }
+}
+```
